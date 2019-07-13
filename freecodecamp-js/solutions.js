@@ -98,19 +98,43 @@ function findLongestWordLength(str) {
 //Return an array consisting of the largest number from each provided sub-array. 
 //For simplicity, the provided array will contain exactly 4 sub-arrays.
 
-
+//naive way
 function largestOfFour(arr) {
- /*
-    let large = [];
-    for(let i = 0; i < arr.length; i++){
+    let res = [];
+    for(let i = 0; i< arr.length; i++){
+        let largest = arr[i][0];
         for(let j = 0; j < arr.length; j++){
-            if            
+            if(arr[i][j] > largest){
+                largest = arr[i][j];
+            }
+        }
+        res.push(largest);
     }
-    return arr;
-*/  
+    return res;
 }
-  
-  a = largestOfFour([[4, 5, 1, 3], [13, 27, 18, 26], [32, 35, 37, 39], [1000, 1001, 857, 1]]);
 
+//Elegant solution! 🚀
+
+function largestOfFour(arr){
+    return arr.map(x => x.reduce( (acc, x) => Math.max(acc,x), 0));
+}
+
+
+//Check if a string (first argument, str) ends with the given target string (second argument, target).
+/*r) ends with the given target string (second argument, target).
+
+This challenge can be solved with the .endsWith() method, 
+which was introduced in ES2015. But for the purpose of this challenge, 
+we would like you to use one of the JavaScript substring methods instead.
+*/
+
+
+  
+  a = largestOfFour([
+                        [4, 5, 1, 3],
+                        [13, 27, 18, 26], 
+                        [32, 35, 37, 39], 
+                        [1000, 1001, 857, 1]
+                    ]);
 
 console.log(a);
