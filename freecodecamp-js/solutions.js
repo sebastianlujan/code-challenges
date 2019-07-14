@@ -113,28 +113,50 @@ function largestOfFour(arr) {
     return res;
 }
 
-//Elegant solution! 🚀
+//Elegant solution! 🚀 // verify solution against reallity
 
 function largestOfFour(arr){
     return arr.map(x => x.reduce( (acc, x) => Math.max(acc,x), 0));
 }
 
 
-//Check if a string (first argument, str) ends with the given target string (second argument, target).
-/*r) ends with the given target string (second argument, target).
 
-This challenge can be solved with the .endsWith() method, 
-which was introduced in ES2015. But for the purpose of this challenge, 
-we would like you to use one of the JavaScript substring methods instead.
-*/
+// a = largestOfFour([[4, 5, 1, 3],[13, 27, 18, 26], [32, 35, 37, 39], [1000, 1001, 857, 1]]);
+
+
+
+/* Check if a string (first argument, str) ends with the given target string (second argument, target).*/
+
+//easy solution
+function confirmEnding(str, target) { 
+    return str.endsWith(target);
+}  
+
+// "The Pascal way", solution
+function confirmEnding(str, target){
+    let count = 0;
+    let i = str.length -1;
+    let j = target.length -1;
+
+    while( str[i] === target[j] && count < target.length ){
+        i--; 
+        j--; 
+        count++;
+    }
+    return count === target.length;
+}
+
+//one line clever solution 
+function confirmEnding(str, target){
+    return str.slice(str.length - target.length) === target;
+}
+
+
+
+a = confirmEnding("He has to give me a new name", "name");
 
 
   
-  a = largestOfFour([
-                        [4, 5, 1, 3],
-                        [13, 27, 18, 26], 
-                        [32, 35, 37, 39], 
-                        [1000, 1001, 857, 1]
-                    ]);
+
 
 console.log(a);
