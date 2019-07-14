@@ -116,13 +116,14 @@ function largestOfFour(arr) {
 //Elegant solution! 🚀 // verify solution against reallity
 
 function largestOfFour(arr){
-    return arr.map(x => x.reduce( (acc, x) => Math.max(acc,x), 0));
+    return arr.map(x => 
+        x.reduce( (acc, x) => Math.max(acc, x) , 0));
 }
 
 
 
-// a = largestOfFour([[4, 5, 1, 3],[13, 27, 18, 26], [32, 35, 37, 39], [1000, 1001, 857, 1]]);
-
+//a = largestOfFour([[4, 5, 1, 3],[13, 27, 18, 26], [32, 35, 37, 39], [1000, 1001, 857, 1]]);
+a = largestOfFour([[17, 23, 25, 12], [25, 7, 34, 48], [4, -10, 18, 21], [-72, -3, -17, -10]]);
 
 
 /* Check if a string (first argument, str) ends with the given target string (second argument, target).*/
@@ -151,12 +152,6 @@ function confirmEnding(str, target){
     return str.slice(str.length - target.length) === target;
 }
 
-
-
-a = confirmEnding("He has to give me a new name", "name");
-
-
-  
-
+//a = confirmEnding("He has to give me a new name", "name");
 
 console.log(a);
