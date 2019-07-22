@@ -1,157 +1,57 @@
-//convert celsius to Fahrenheit
-var a;
+/*
+Check if a value is classified as a boolean primitive. Return true or false.
+Boolean primitives are true and false.
+*/
 
-function convertToF(celsius) {
-    return celsius * 9/5 + 32;
-}
-  convertToF(30);
-
-//Reverse the provided string.
-//with reverse() function
-function reverseString(str) {
-    return str.split('').reverse().join('');
+let a;
+function booWho(bool) {
+    return typeof bool === 'boolean'
 }
 
-//naive way 
-function reverseString(str){
-    let rev = "";
-    for(let cursor = str.length-1; cursor >= 0; cursor-- ){
-        rev += str[cursor];
-    }
-    return rev;
-}
+a = booWho(true);
 
-//es6 functional way
+/*
+Return the provided string with the first letter of each word capitalized. 
+Make sure the rest of the word is in lower case.
+For the purpose of this exercise, you should also capitalize connecting words 
+like "the" and "of".
+*/
 
-function reverseString(str){
-    let rev = "";
-    [...str].forEach(e => { rev = e + rev });
-    return rev;
-}
+function titleCase(str) {
+    let title = str.toLowerCase().split(' ');//[im,  a, little , .. , ]
+    let res = [];
+    let newStr = "";
 
-
-//exercise 3  
-function factorialize(num) {
-    if(num == 0) return 1;
-    return factorialize(num-1) * num;
-}
-
-function factorialize(num){
-    let fact = 1;
-    for(let j=2; j<=num; j++ ){
-        fact = fact * j;
-    }
-    return fact;
-}
-
-//with memoization
-let memoize = (fun) =>{
-    let memo = {}; //defined a memo obj
-    
-    //first class function
-    return (...args) => {
-        let n = args[0];
-        let res;
-        if ( n in memo ){ res = memo[n]; }
-        res = fun(n); //save the function scope 
-        memo[n] = res;
-        return res;
-    }
-}
-
-//memoization and ES6
-factorialize = memoize(
-    (num) => {
-        if (num == 0)
-            return 1;
-        return num * factorialize(num - 1);
-    }
-);
-
-//Return the length of the longest word in the provided sentence.
-//functional solution
-function findLongestWordLength(str) {
-    let max = 0;
-    str = str.split(' ');
-    str.forEach((x) => {
-        if(x.length >= max){
-            max = x.length;
-        }
+    title.forEach(function(word){
+        newStr += word[0].toUpperCase(); 
+        newStr += word.slice(1, word.length);
+        res.push(newStr);
+        newStr = "";
     });
-    return max;
+    return res.join(' ');
+}
+
+//replace solution
+function titleCase(str){
+    return str.split(' ').map(word => word.replace(word[0], word[0].toUpperCase() )).join(' ');
+}
+  
+a = titleCase("i'm a little tea pot");
+  console.log(a);
+
+/*
+You are given two arrays and an index.
+
+Use the array methods slice and splice to copy each element of the first array into the second array, in order.
+
+Begin inserting elements at index n of the second array.
+
+Return the resulting array. The input arrays should remain the same after the function runs.
+
+function frankenSplice(arr1, arr2, n) {
+    // It's alive. It's alive!
+    return arr2;
   }
   
-//naive solution with for loop
-function findLongestWordLength(str) {
-    str = str.split(' ');
-    let max = 0;
-    for(let i = 0; i < str.length; i++){
-        if(str[i].length >= max){
-            max = str[i].length;
-        }
-    }
-    return max;
-}
-//a = findLongestWordLength("The quick brown fox jumped over the lazy dog");
-
-
-//Return an array consisting of the largest number from each provided sub-array. 
-//For simplicity, the provided array will contain exactly 4 sub-arrays.
-
-//naive way
-function largestOfFour(arr) {
-    let res = [];
-    for(let i = 0; i< arr.length; i++){
-        let largest = arr[i][0];
-        for(let j = 0; j < arr.length; j++){
-            if(arr[i][j] > largest){
-                largest = arr[i][j];
-            }
-        }
-        res.push(largest);
-    }
-    return res;
-}
-
-//Elegant solution! 🚀 // verify solution against reallity
-
-function largestOfFour(arr){
-    return arr.map(x => 
-        x.reduce( (acc, x) => Math.max(acc, x) , 0));
-}
-
-
-
-//a = largestOfFour([[4, 5, 1, 3],[13, 27, 18, 26], [32, 35, 37, 39], [1000, 1001, 857, 1]]);
-a = largestOfFour([[17, 23, 25, 12], [25, 7, 34, 48], [4, -10, 18, 21], [-72, -3, -17, -10]]);
-
-
-/* Check if a string (first argument, str) ends with the given target string (second argument, target).*/
-
-//easy solution
-function confirmEnding(str, target) { 
-    return str.endsWith(target);
-}  
-
-// "The Pascal way", solution
-function confirmEnding(str, target){
-    let count = 0;
-    let i = str.length -1;
-    let j = target.length -1;
-
-    while( str[i] === target[j] && count < target.length ){
-        i--; 
-        j--; 
-        count++;
-    }
-    return count === target.length;
-}
-
-//one line clever solution 
-function confirmEnding(str, target){
-    return str.slice(str.length - target.length) === target;
-}
-
-//a = confirmEnding("He has to give me a new name", "name");
-
-console.log(a);
+  frankenSplice([1, 2, 3], [4, 5, 6], 1);
+  */
